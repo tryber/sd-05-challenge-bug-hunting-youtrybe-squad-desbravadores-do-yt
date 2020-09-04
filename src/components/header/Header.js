@@ -6,14 +6,12 @@ import ProfileFeatures from './ProfileFeatures';
 
 import '../../css/navbar.css';
 
-const Header = () => {
-  return (
-    <nav className="nav">
-      <Menu />
-      <SearchBar />
-      <ProfileFeatures />
-    </nav>
-  );
-};
+const Header = () => (
+  <nav className="nav">
+    <Menu />
+    <SearchBar />
+    <ProfileFeatures />
+  </nav>
+);
 
 export default Header;
