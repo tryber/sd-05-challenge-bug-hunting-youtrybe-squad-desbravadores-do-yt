@@ -3,9 +3,13 @@ const YOUTUBE_AUTH_KEY = 'AIzaSyBBw9WiO37Tn1d20KvqdjuxqS-kvvaYF9A';
 
 export const searchVideos = (searchText) => {
   const URL = `${YOUTUBE_API_URL}/search?part=snippet&q=${searchText}&maxResults=25&key=${YOUTUBE_AUTH_KEY}`;
-  return fetch(URL).then((response) =>
-    response.json().then((data) => (response.ok ? Promise.resolve(data) : Promise.reject(data))),
-  );
+  return new Promise((resolve, reject) => {
+    resolve(
+      fetch(URL)
+        .then((data) => data.json())
+        .catch((error) => reject(error)),
+    );
+  });
 };
 
 export const getVideoInfo = (videoId) => {
@@ -15,7 +19,7 @@ export const getVideoInfo = (videoId) => {
   return new Promise((resolve, reject) => {
     resolve(
       fetch(URL)
-        .then((data) => data)
+        .then((data) => data.json())
         .catch((error) => reject(error)),
     );
   });
@@ -28,7 +32,7 @@ export const getVideoComments = (videoId) => {
   return new Promise((resolve, reject) => {
     resolve(
       fetch(URL)
-        .then((data) => data)
+        .then((data) => data.json())
         .catch((error) => reject(error)),
     );
   });
